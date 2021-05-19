@@ -14,6 +14,10 @@ import Exceptions.NullPointerAusnahme;
 import Mannschaften.Mannschaft;
 import Mannschaften.MannschaftenListe;
 
+/*
+ * In dieser Test-Klasse soll die Klasse Mannschaften-Liste getestet werden.
+ */
+
 class MannschaftenListeTest {
 
 	@Test

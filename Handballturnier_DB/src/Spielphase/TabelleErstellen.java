@@ -50,16 +50,11 @@ public class TabelleErstellen {
 	/**
 	 * In dieser Methode wird die Tabelle aus der Gruppenphase generiert. Dafür
 	 * werden die Punkte, die die Mannschaften durch die Spiele gewinnen konnten,
-	 * zusammengezählt. Haben zwei Mannschaften gleich viele Punkte, kommt es zum
-	 * direkten Vergleich, das heißt das Spiel der beiden Mannschaften wird
-	 * betrachtet, der Gewinner bekommt den vorderen Platz, der Verlierer den
-	 * hinteren. Kam es bei dem Spiel jedoch zum Unentschieden, wird die Anzahl der
+	 * zusammengezählt. Haben zwei Mannschaften gleich viele Punkte, wird die Anzahl der
 	 * gesamt erzielten Tore betrachtet. Die Mannschaft mit der größeren Anzahl an
-	 * Toren bekommt den vorderen Platz. Haben alle Mannschaften in der Gruppe
-	 * gleich viele Punkte, wird der direkte Vergleich unwirksam und es werden
-	 * direkt die geworfenen Tore betrachtet und daraus die Tabelle errechnet. Ist
-	 * nun aber die Anzahl der geworfenen Tore auch gleich, soll ein 7m-Werfen
-	 * simuliert werden und eine zufällige Zahl generiert den jeweiligen Tabellenplatz.
+	 * Toren bekommt den vorderen Platz. Ist nun aber die Anzahl der geworfenen 
+	 * Tore auch gleich, soll ein 7m-Werfen simuliert werden und eine zufällige 
+	 * Zahl generiert den jeweiligen Tabellenplatz.
 	 * 
 	 * @pre der Spielplan darf nicht leer sein und die Ergebnisse müssen eingetragen
 	 *      sein
@@ -104,15 +99,14 @@ public class TabelleErstellen {
 				/*
 				 * nach absteigender Punktzahl sortieren, 
 				 * wenn die gleiche Anzahl an Punkten besteht, wird nach Toren sortiert
-				 * wenn alle drei Mannschaften zudem dieselbe Toranzahl haben, wird ein 7m Schießen über eine zufällige 
-				 * Zahl simuliert und danach sortiert
+				 * wenn die Mannschaften zudem dieselbe Toranzahl haben, wird ein 7m Schießen 
+				 * über eine zufällige Zahl simuliert und danach sortiert
 				 */
 				
 				// Neue Spalte mit Rang hinzufügen
 				String add = "ALTER TABLE " + gruppe + " ADD rang int NOT NULL";
 				stmt.executeUpdate(add);
 			
-				// sortieren, zuerst nach punkten, dann nach toren, dann nach random
 				String order = "SELECT * FROM " + gruppe + " WHERE " + gruppe + "ID=0";
 				ResultSet rset1 = stmt.executeQuery(order); 
 				
@@ -140,6 +134,10 @@ public class TabelleErstellen {
 					random3 = rset3.getInt("random");
 				} rset3.close();
 				
+				/*
+				 * hier werden die Mannschaften nach ihren Punkten, ihrer Torzahl und der zufälligen Zahl verglichen,
+				 * die Zeilen werden mit ihrem jeweiligen Rang geupdated
+				 */
 				if(punkte1 > punkte2) {
 					if(punkte1 > punkte3) {
 						String rang1 = "UPDATE " + gruppe + " SET `rang` = 1 WHERE " + gruppe + "ID=0";
@@ -712,6 +710,13 @@ public class TabelleErstellen {
 		
 	}
 	
+	/*
+	 * Mit dieser Methode wird der Sieger eines Spiels aus dem Viertelfinale geholt.
+	 * 
+	 * @pre die Spielplantabelle des Viertelfinales darf nicht leer sein
+	 * @post der Sieger steht fest
+	 * @throws NullPointerAusnahme, wenn der übergebene Spielplan leer ist
+	 */
 	public Mannschaft getSiegerVF(int index) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -777,6 +782,13 @@ public class TabelleErstellen {
 		
 	}
 	
+	/*
+	 * Mit dieser Methode wird der Sieger eines Spiels aus dem Halbfinale geholt.
+	 * 
+	 * @pre die Spielplantabelle des Halbfinales darf nicht leer sein
+	 * @post der Sieger steht fest
+	 * @throws NullPointerAusnahme, wenn der übergebene Spielplan leer ist
+	 */
 	public Mannschaft getSiegerHF(int index) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -840,6 +852,13 @@ public class TabelleErstellen {
 		
 	}
 	
+	/*
+	 * Mit dieser Methode wird der Verlierer eines Spiels aus dem Halbfinale geholt.
+	 * 
+	 * @pre die Spielplantabelle des Halbfinales darf nicht leer sein
+	 * @post der Verlierer steht fest
+	 * @throws NullPointerAusnahme, wenn der übergebene Spielplan leer ist
+	 */
 	public Mannschaft getVerliererHF(int index) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -914,6 +933,13 @@ public class TabelleErstellen {
 		
 	}
 
+	/*
+	 * Mit dieser Methode wird der erste Platz einer Gruppe geholt.
+	 * 
+	 * @pre die Gruppentabelle darf nicht leer sein
+	 * @post der erste Platz steht fest
+	 * @throws NullPointerAusnahme, wenn die übergebene Tabelle leer ist
+	 */
 	public Mannschaft getPlatz1(String gruppe) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -964,6 +990,13 @@ public class TabelleErstellen {
 		this.platz1 = platz1;
 	}
 
+	/*
+	 * Mit dieser Methode wird der zweite Platz einer Gruppe geholt.
+	 * 
+	 * @pre die Gruppentabelle darf nicht leer sein
+	 * @post der zweite Platz steht fest
+	 * @throws NullPointerAusnahme, wenn die übergebene Tabelle leer ist
+	 */
 	public Mannschaft getPlatz2(String gruppe) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -1012,6 +1045,13 @@ public class TabelleErstellen {
 		this.platz2 = platz2;
 	}
 
+	/*
+	 * Mit dieser Methode wird der Sieger eines Spiels aus dem Finale geholt.
+	 * 
+	 * @pre die Spielplantabelle des Finales darf nicht leer sein
+	 * @post der Sieger steht fest
+	 * @throws NullPointerAusnahme, wenn der übergebene Spielplan leer ist
+	 */
 	public Mannschaft getSiegerFinale(int index) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -1078,6 +1118,13 @@ public class TabelleErstellen {
 		
 	}
 	
+	/*
+	 * Mit dieser Methode wird der Verlierer eines Spiels aus dem Finale geholt.
+	 * 
+	 * @pre die Spielplantabelle des Finales darf nicht leer sein
+	 * @post der Verlierer steht fest
+	 * @throws NullPointerAusnahme, wenn der übergebene Spielplan leer ist
+	 */
 	public Mannschaft getVerliererFinale(int index) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

@@ -27,8 +27,6 @@ public class Zuordnung {
 
 	private Hallen halle;
 
-	private PersonenZuordnen[][] person;
-
 	/**
 	 * 
 	 * @param name
@@ -46,9 +44,9 @@ public class Zuordnung {
 	}
 
 	/**
-	 * Mit diesem setter werden die Hallen in das neue Array zuordnung gespeichert
+	 * Mit diesem setter werden die Hallen in die neue Tabelle zuordnung gespeichert
 	 * 
-	 * @pre die Hallenliste darf nicht leer sein
+	 * @pre die Hallentabelle darf nicht leer sein
 	 * @param hallen
 	 * @param halleIndex
 	 * @throws NullPointerAusnahme
@@ -91,9 +89,9 @@ public class Zuordnung {
 	}
 
 	/**
-	 * Mit diesem setter werden die Personen in das Array zuordnung gespeichert
+	 * Mit diesem setter werden die Personen in die Tabelle zuordnung gespeichert
 	 * 
-	 * @pre die Personenliste darf nicht leer sein
+	 * @pre die Personentabelle darf nicht leer sein
 	 * @param person
 	 * @param personIndex
 	 * @throws NullPointerAusnahme
@@ -145,7 +143,7 @@ public class Zuordnung {
 	/**
 	 * Mit dieser Methode wird die Zuordnung von Hallen und Personen ausgegeben.
 	 * 
-	 * @pre die Liste darf nicht leer sein
+	 * @pre die Tabelle darf nicht leer sein
 	 * @throws NullPointerAusnahme, wenn die übergebene Zuordnung leer ist.
 	 */
 

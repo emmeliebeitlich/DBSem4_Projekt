@@ -8,6 +8,10 @@ import Exceptions.NullPointerAusnahme;
 import Spielphase.Spiele;
 import Spielphase.TabelleErstellen;
 
+/*
+ * In dieser Test Klasse soll die Klasse TabelleErstellen getestet werden.
+ */
+
 class TabelleErstellenTest {
 
 	@Test

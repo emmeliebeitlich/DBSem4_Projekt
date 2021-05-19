@@ -8,8 +8,8 @@ import java.sql.Statement;
 import Exceptions.maxAnzPersonenAusnahme;
 
 /**
- * Mit dieser Klasse sollen die Schiedsrichter und Zeitnehmer den Hallen
- * zugeordnet werden. Es gibt immer zwei Zeitnehmer und zwei Schiedsrichter pro
+ * Mit dieser Klasse sollen die Schiedsrichter und Zeitnehmer hinzugefügt
+ * werden. Es gibt immer zwei Zeitnehmer und zwei Schiedsrichter pro
  * Halle
  * 
  * @author emmeliebeitlich

@@ -19,6 +19,7 @@ public class Hallen {
 
 	private Hallen halle;
 
+	// die maximale Anzahl an Hallen ist 6
 	private final static int maxAnzahlHallen = 6;
 	private int zahl;
 	

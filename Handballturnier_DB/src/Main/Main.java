@@ -630,6 +630,9 @@ public class Main {
 			// TODO Auto-generated catch block
 			e3.printStackTrace();
 		}
+		/*
+		 * Mannschaften sortieren
+		 */
 		try {
 			manliste.sortieren();
 		} catch (NullPointerAusnahme e2) {
@@ -647,10 +650,6 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		/**
-		 * Spielplan Gruppenphase erstellen
-		 */
 		
 		try {
 			manliste.printGruppenliste();
@@ -658,6 +657,10 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		/**
+		 * Spielplan Gruppenphase erstellen
+		 */
 
 		try {
 			spielplan.spielplanGruppenphaseErstellen();
@@ -671,6 +674,10 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		/*
+		 * Ergebnisse der Spiele eintragen
+		 */
 		try {
 			spielplan.ergebnisEintragen();
 		} catch (NullPointerAusnahme e) {
@@ -697,7 +704,7 @@ public class Main {
 		}
 
 		/**
-		 * Spielpläne K.O.-Runden erstellen
+		 * Spielpläne K.O.-Runden erstellen & Ergebnisse eintragen
 		 */
 
 		try {

@@ -7,6 +7,10 @@ import org.junit.jupiter.api.Test;
 import Exceptions.MaxAnzMannschaftenAusnahme;
 import Mannschaften.Mannschaft;
 
+/*
+ * In dieser Test-Klasse soll die Klasse Mannschaft getestet werden.
+ */
+
 class MannschaftTest {
 
 	@Test

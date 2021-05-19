@@ -7,6 +7,10 @@ import org.junit.jupiter.api.Test;
 import Zuordnung.Schiedsrichter;
 import Zuordnung.Zeitnehmer;
 
+/*
+ * In dieser Test-Klasse soll die Klasse Mensch getestet werden.
+ */
+
 class MenschTest {
 
 	@Test

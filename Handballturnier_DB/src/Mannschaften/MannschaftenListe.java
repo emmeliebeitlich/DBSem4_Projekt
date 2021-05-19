@@ -9,10 +9,10 @@ import Exceptions.*;
 
 /**
  * In dieser Klasse soll aus den Mannschaften eine Liste erstellt werden. Zuerst
- * können die Mannschaften hinzugefügt werden. Diese werden weiterhin nach ihrem
- * Geschlecht und ihrem Jahrgang beziehungsweise Alter sortiert. Später werden
- * aus der neuen Aufteilung zufällig Gruppen für die Gruppenphase des Turniers
- * erstellt.
+ * können die Mannschaften der Tabelle hinzugefügt werden. Diese werden danach nach 
+ * ihrem Geschlecht und ihrem Jahrgang beziehungsweise Alter sortiert. 
+ * Später werden aus der neuen Aufteilung Gruppen für die Gruppenphase 
+ * des Turniers erstellt.
  * 
  * @inv das Geschlecht der Mannschaften muss "m" oder "w" sein, sonst kann die
  *      Mannschaft nicht einer Liste zugeordnet werden
@@ -50,12 +50,11 @@ public class MannschaftenListe {
 	}
 
 	/**
-	 * Mit dieser Methode werden die Mannschaften dem Array hinzugefügt.
+	 * Mit dieser Methode werden die Mannschaften der Tabelle hinzugefügt.
 	 * 
 	 * @param mannschaft
 	 * @throws MaxAnzMannschaftenAusnahme, sobald die maximale Anzahl an
-	 *                                     zugelassenen Mannschaften überschritten
-	 *                                     wird.
+	 *         zugelassenen Mannschaften überschritten wird.
 	 */
 
 	public void mannschaftHinzufuegen(Mannschaft mannschaft) throws MaxAnzMannschaftenAusnahme {
@@ -101,8 +100,8 @@ public class MannschaftenListe {
 	 * Mit dieser print-Methode soll die Liste der teilnehmenden Mannschaften
 	 * geprintet werden.
 	 * 
-	 * @pre die Liste darf nicht leer sein
-	 * @throws NullPointerAusnahme , wenn die übergebene Liste leer ist.
+	 * @pre die Tabelle darf nicht leer sein
+	 * @throws NullPointerAusnahme , wenn die übergebene Tabelle leer ist.
 	 */
 
 	public void print() throws NullPointerAusnahme {
@@ -160,16 +159,16 @@ public class MannschaftenListe {
 
 	/**
 	 * In dieser Methode werden die Mannschaften zuerst nach ihrem Geschlecht und
-	 * später nach ihrem Alter sortiert. Die neue Sortierung wird zeilenweise in dem
-	 * Array "sortliste" gespeichert
+	 * später nach ihrem Alter sortiert. Die neue Sortierung wird in neuen Tabellen
+	 * gespeichert.
 	 * 
 	 * @pre es müssen 72 Mannschaften angemeldet sein, damit es 12 Gruppen à 3
 	 *      Mannschaften geben kann, von den 72 Mannschaften müssen 6 Mannschaften
 	 *      Männer Aktive sein, 6 Mannschaften Frauen Aktive, 6 männliche A-Jugend,
 	 *      6 männliche B-Jugend, 6 weibliche A-Jugend und 6 weibliche B-Jugend
-	 * @post es gibt eine Liste, die die Mannschaften nach Alter und Geschlecht
-	 *       sortiert beinhaltet
-	 * @throws NullPointerAusnahme , wenn die übergebene liste leer ist.
+	 * @post es gibt Tabellen, die die Mannschaften nach Alter und Geschlecht
+	 *       sortiert beinhalten
+	 * @throws NullPointerAusnahme , wenn die übergebene Mannschaftentabelle leer ist.
 	 */
 
 	public void sortieren() throws NullPointerAusnahme {
@@ -200,7 +199,7 @@ public class MannschaftenListe {
 
 		/**
 		 * nach männlich und weiblich sortieren 
-		 * --> neue Tabellen mannschaftMännlich und mannschaftWeiblich
+		 * --> neue Tabellen mannschaftenMännlich und mannschaftenWeiblich
 		 * 
 		 */
 			
@@ -421,9 +420,8 @@ public class MannschaftenListe {
 
 	/**
 	 *
-	 * @param index,  Zeile
-	 * @param index2, Spalte
-	 * @return das Geschlecht einer Mannschaft an einer bestimmten Stelle im Array
+	 * @param index, Zeilen ID 
+	 * @return das Geschlecht einer Mannschaft an einer bestimmten Stelle in der Tabelle
 	 */
 
 	public String getMannschaftMoW(int index) {
@@ -463,9 +461,9 @@ public class MannschaftenListe {
 	 * also insgesamt 24 Gruppen mit jeweils 3 Mannschaften. Wir haben 4 Gruppen für
 	 * die Männermannschaften, 4 für die männliche A-Jugend, 4 für die männliche
 	 * B-Jugend & noch einmal genauso viele für die Frauen. Die Gruppen werden in
-	 * dem neuen Array "gruppenliste" gespeichert.
+	 * separaten Tabellen gespeichert.
 	 * 
-	 * @pre es werden jeweils 6 Mannschaften jedes Jahrgangs eines jeden Geschlechts
+	 * @pre es werden jeweils 12 Mannschaften jedes Jahrgangs eines jeden Geschlechts
 	 *      benötigt
 	 * @post es gibt pro Jahrgang eines Geschlechts vier Gruppen à 3 Mannschaften
 	 * @throws NullPointerAusnahme, wenn das übergebene Feld sortlist leer ist.
@@ -1317,11 +1315,10 @@ public class MannschaftenListe {
 	}
 
 	/**
-	 * Mit dieser print-Methode soll das zweidimensionale "gruppenliste"-Array
-	 * ausgegeben werden.
+	 * Mit dieser print-Methode sollen die Gruppen ausgegeben werden.
 	 * 
-	 * @pre die Gruppenliste darf nicht leer sein
-	 * @throws NullPointerAusnahme, wenn das übergebene Feld gruppenliste leer ist.
+	 * @pre die Gruppentabelle darf nicht leer sein
+	 * @throws NullPointerAusnahme, wenn die übergebene Tabelle leer ist.
 	 */
 
 	public void printGruppenliste() throws NullPointerAusnahme {

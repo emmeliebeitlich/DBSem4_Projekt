@@ -7,6 +7,10 @@ import org.junit.jupiter.api.Test;
 import Exceptions.maxAnzHallenAusnahme;
 import Zuordnung.Hallen;
 
+/*
+ * In dieser Test-Klasse soll die Klasse Hallen getestet werden.
+ */
+
 class HallenTest {
 
 	@Test

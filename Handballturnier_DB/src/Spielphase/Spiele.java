@@ -17,7 +17,7 @@ import Mannschaften.*;
  * der anderen Jahgänge spielen parallel dazu, es finden somit immer 6 Spiele
  * gleichzeitig statt.
  * 
- * Für eine Sieg in einem Spiel bekommt man 2 Punkte, bei einem unentschieden
+ * Für eine Sieg in einem Spiel bekommt man 2 Punkte, bei einem Unentschieden
  * bekommt man einen Punkt, verliert man, bekommt man keinen. Aus den Punkten
  * wird später die Tabelle errechnet.
  * 
@@ -58,7 +58,7 @@ public class Spiele {
 	 * @param man2    zweitgenannte Mannschaft in einem Spiel
 	 * @param tore1   erzielte Tore der erstgenannten Mannschaft
 	 * @param tore2   erzielte Tore der zweitgenannten Mannschaft
-	 * @param punkte1 aus den Ergebnissen berechneten Punkte der ersten Mannschaft
+	 * @param punkte1 aus den Ergebnissen berechnete Punkte der ersten Mannschaft
 	 *                der Gruppe
 	 * @param punkte2 aus den Ergebnissen berechnete Punkte der zweiten Mannschaft
 	 *                der Gruppe
@@ -93,9 +93,9 @@ public class Spiele {
 	 * Das Turnier beginnt um 9 Uhr. Die Gruppenphase findet zwischen 9 und 14:00
 	 * Uhr statt.
 	 * 
-	 * @pre 	die gruppenliste ist nicht leer
+	 * @pre 	die Gruppentabellen dürfen nicht leer sein
 	 * @post	der Spielplan der Gruppenphase wurde erstellt
-	 * @throws 	NullPointerAusnahme, wenn die übergebene Gruppenliste leer ist
+	 * @throws 	NullPointerAusnahme, wenn die übergebene Gruppentabelle leer ist
 	 */
 
 	public void spielplanGruppenphaseErstellen() throws NullPointerAusnahme {
@@ -121,6 +121,7 @@ public class Spiele {
 		 * 10			MG4 	Man 3		Man 1		11			55
 		 * 11			MG4 	Man 2		Man 3		13			35
 		 * 
+		 * 12			FG1		Man 1		Man 2		9			00	
 		 * ...
 		 */
 		
@@ -187,6 +188,9 @@ public class Spiele {
 					mann3.setName(rs3.getString("name"));
 				} rs3.close();
 				
+				/*
+				 * Spiel 1 der Gruppe
+				 */
 				String insert1 = "INSERT INTO spielplan VALUES(" + ((i-1)*3) + ", 'MG" + i + "', '" + mann1.getName() + "', '" + mann2.getName() + "', " + h + ", " + min + ", 0, 0)";
 					
 				/*
@@ -203,6 +207,9 @@ public class Spiele {
 					}
 				}
 				
+				/*
+				 * Spiel 2 der Gruppe
+				 */
 				String insert2 = "INSERT INTO spielplan VALUES(" + ((i-1)*3+1) + ", 'MG" + i + "', '" + mann3.getName() + "', '" + mann1.getName() + "', " + h + ", " + min + ", 0, 0)";
 				
 				for(int skip = 0; skip < 4; skip++) {
@@ -213,6 +220,9 @@ public class Spiele {
 					}
 				}
 				
+				/*
+				 * Spiel 3 der Gruppe
+				 */
 				String insert3 = "INSERT INTO spielplan VALUES(" + ((i-1)*3+2) + ", 'MG" + i + "', '" + mann2.getName() + "', '" + mann3.getName() + "', " + h + ", " + min + ", 0, 0)";
 				
 				stmt.execute(insert1);
@@ -725,7 +735,12 @@ public class Spiele {
 				punkte1 = punkte2 = punkte3 = 0;
 				int toreman1, toreman2, toreman3;
 				
-				// Spiel 1
+				/*
+				 * Spiel 1
+				 * 
+				 * tore sind die jeweiligen Tore für ein einzelnes Spiel,
+				 * torman sind die gesamten Tore einer Mannschaft, die Tore aus zwei Spielen werden zusammengerechnet
+				 */
 				tore1 = (int) (Math.random() * 10) + 1;
 				toreman1 = tore1;
 				tore2 = (int) (Math.random() * 10) + 1;
@@ -827,13 +842,9 @@ public class Spiele {
 	}
 
 	/**
-	 * In dieser Methode soll nun der Spielplan für die K.O Runden erstellt werden.
+	 * In dieser Methode soll der Spielplan für das Viertelfinale erstellt werden.
 	 * Im Viertelfinale spielt der Sieger einer Gruppe gegen den Zweitplatzierten
-	 * der nächsten Gruppe. Im Halbfinale spielt der Gewinner des ersten Viertel-
-	 * finales gegen den Gewinner des dritten und der Gewinner des zweiten VF gegen
-	 * den des vierten, damit die Mannschaften vor dem Finale nicht zwei Mal gegen
-	 * dieselbe Mannschaft spielen, sondern nur gegen Mannschaften aus anderen
-	 * Gruppen.
+	 * der nächsten Gruppe. 
 	 * 
 	 * @pre		die Tabelle muss nach der Gruppenphase erstellt worden sein 
 	 * 			und der Erst- und Zweitplatzierte jeder Gruppe muss feststehen
@@ -1085,6 +1096,11 @@ public class Spiele {
 				
 				int index, index2;
 				
+				/*
+				 * Man lässt den Sieger aus dem ersten Viertelfinale gegen den 
+				 * Sieger des dritten VF spielen und den Sieger des zweiten VF gegen 
+				 * den des vierten, damit die Mannschaften vor dem Finale nicht zwei Mal gegeneinander spielen 
+				 */
 				if(i % 2 == 0) {
 					index = 2 * i;
 					index2 = 2 * i + 2;
@@ -1116,7 +1132,7 @@ public class Spiele {
 	}
 
 	/**
-	 * In dieser Methode werden die Ergebnisse der Halbfinalspiele random generiert.
+	 * In dieser Methode werden die Ergebnisse der Halbfinalspiele zufällig generiert.
 	 * Daraus ergeben sich Gewinner, die ins große Finale kommen und um den ersten
 	 * Platz kämpfen und Verlierer, die ins kleine Finale kommen und um den dritten
 	 * Platz kämpfen.
@@ -1307,7 +1323,7 @@ public class Spiele {
 	 * @pre		die Spielpläne dürfen nicht leer sein und die Platzierung 
 	 * 			muss feststehen
 	 * @throws 	NullPointerAusnahme, wenn mindestens einer der übergebenen Spielpläne
-	 *                              leer ist.
+	 *          leer ist.
 	 * 
 	 */
 

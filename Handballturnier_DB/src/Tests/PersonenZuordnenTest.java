@@ -12,6 +12,10 @@ import Zuordnung.PersonenZuordnen;
 import Zuordnung.Schiedsrichter;
 import Zuordnung.Zeitnehmer;
 
+/*
+ * In dieser Test-Klasse soll die Klasse PersonenZuordnen getestet werden.
+ */
+
 class PersonenZuordnenTest {
 
 	@Test

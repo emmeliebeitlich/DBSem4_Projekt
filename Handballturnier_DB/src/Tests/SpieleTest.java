@@ -15,6 +15,10 @@ import Mannschaften.MannschaftenListe;
 import Spielphase.Spiele;
 import Spielphase.TabelleErstellen;
 
+/*
+ * In dieser Test-Klasse soll die Klasse Spiele getestet werden.
+ */
+
 class SpieleTest {
 
 	@Test
